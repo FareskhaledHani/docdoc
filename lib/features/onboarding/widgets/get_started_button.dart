@@ -1,5 +1,7 @@
+import 'package:docdoc/core/helpers/extentions.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/routing/routes.dart';
 import '../../../core/theming/colors.dart';
 import '../../../core/theming/styles.dart';
 
@@ -8,7 +10,9 @@ class GetStartedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: () {},
+    return TextButton(onPressed: () {
+      context.pushNamed(Routes.loginScreen);
+    },
 
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -22,7 +26,7 @@ class GetStartedButton extends StatelessWidget {
         )
         ,child: Text(
       'Get Started',
-      style: TextStyles.font16WhiteAndSemiBold,
+      style: TextStyles.font16WhiteSemiBold,
     ));
   }
 }
