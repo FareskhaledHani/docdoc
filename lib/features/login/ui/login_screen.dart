@@ -1,7 +1,7 @@
 
 
 
-import 'package:docdoc/features/login/ui/widgets/alreedy_have_account.text.dart';
+import 'package:docdoc/features/login/ui/widgets/dont_have_account.dart';
 import 'package:docdoc/features/login/ui/widgets/email_and_password.dart';
 import 'package:docdoc/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:docdoc/features/login/ui/widgets/terms_And_condition_text.dart';
@@ -75,10 +75,7 @@ class LoginScreen extends StatelessWidget {
   }
   void validateThenDoLoin(BuildContext context) {
     if(context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginState(LoginRequestBody(
-          email: context.read<LoginCubit>().emailController.text,
-          password: context.read<LoginCubit>().passwordController.text
-      ));
+      context.read<LoginCubit>().emitLoginState();
     }
 
   }
