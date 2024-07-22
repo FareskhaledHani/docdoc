@@ -23,7 +23,7 @@ platform :android do
       sh "flutter build apk --flavor Production -t lib/main_production.dart --verbose"
       firebase_app_distribution(
         app: "1:244061176148:android:808986f70fc52ec08b48c1",
-        firebase_cli_token: "1//03AXENvO9OyaSCgYIARAAGAMSNwF-L9IrBIdAeY3TdxtdwpFgg7ZWCrsO1lAAzmPBspy1AnLTS-t8Y3JBw9FsCbMT84McybSP_7c",
+        firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
         android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
         testers: "fareskhaled11114@gmail.com",
         release_notes: "First Fastlane Firebase Distribution"
