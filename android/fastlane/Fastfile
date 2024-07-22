@@ -1,0 +1,36 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Lane for Android Firebase App Distribution"
+  lane :firebase_distribution do
+    begin
+      sh "flutter clean"
+      sh "flutter build apk --flavor Production -t lib/main_production.dart --verbose"
+      firebase_app_distribution(
+        app: "1:244061176148:android:808986f70fc52ec08b48c1",
+        firebase_cli_token: "1//03AXENvO9OyaSCgYIARAAGAMSNwF-L9IrBIdAeY3TdxtdwpFgg7ZWCrsO1lAAzmPBspy1AnLTS-t8Y3JBw9FsCbMT84McybSP_7c",
+        android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+        testers: "fareskhaled11114@gmail.com",
+        release_notes: "First Fastlane Firebase Distribution"
+      )
+    rescue => ex
+      UI.error("An error occurred: #{ex}")
+      UI.user_error!("Build and distribution failed!")
+    end
+  end
+end
