@@ -2,11 +2,14 @@
 class Assets {
   Assets._();
 
+  static const String imagesHomeBluePattern = 'assets/images/home_blue_pattern.png';
   static const String imagesOnboardingDoctor = 'assets/images/onboarding_doctor.png';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12 = 'assets/images/splash_android_12.png';
   static const String svgsBackgroundWithOpacity = 'assets/svgs/background_with_opacity.svg';
   static const String svgsDocDocLogo = 'assets/svgs/doc_doc_logo.svg';
+  static const String svgsGeneralSpeciality = 'assets/svgs/general_speciality.svg';
+  static const String svgsNotifications = 'assets/svgs/notifications.svg';
   static const String svgsVector = 'assets/svgs/Vector.svg';
 
 }
