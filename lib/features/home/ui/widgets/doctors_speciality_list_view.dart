@@ -1,4 +1,5 @@
 import 'package:docdoc/core/helpers/spacing.dart';
+import 'package:docdoc/features/home/models/specializations_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -8,9 +9,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import 'doctor_speciality_list_view_item.dart';
 
 class DoctorsSpecialityListView extends StatelessWidget {
-  const DoctorsSpecialityListView({super.key});
+  final List<SpecializationsData?> specializationDataList;
+  const DoctorsSpecialityListView({super.key, required this.specializationDataList});
 
   @override
   Widget build(BuildContext context) {
@@ -18,27 +21,12 @@ class DoctorsSpecialityListView extends StatelessWidget {
       height: 100.h,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 8,
+          itemCount: specializationDataList.length,
           itemBuilder: (context, index) {
-        return  Padding(
-          padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 24),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 28.0,
-              backgroundColor: ColorsManager.moreLighterGray,
-              child: SvgPicture.asset(
-                'assets/svgs/general_speciality.svg',
-                height: 40.h,
-                width: 40.w,
-              ),
-
-            ),  verticalSpacing(8.h),
-            Text("Omar",style: TextStyles.font12DarkBlueRegular,),
-          ],
-        ),
-        );
-
+       return DoctorSpecialityListViewItem(
+         specializationData: specializationDataList[index],
+         itemIndex: index,
+       );
       }),
     );
   }
