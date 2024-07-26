@@ -3,6 +3,7 @@ import 'package:docdoc/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/helpers/constants.dart';
 import 'core/routing/app_routar.dart';
 
 class DocApp extends StatelessWidget {
@@ -21,7 +22,7 @@ class DocApp extends StatelessWidget {
         ),
         onGenerateRoute: approuter.generateRoute,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
       ),
     );
   }
