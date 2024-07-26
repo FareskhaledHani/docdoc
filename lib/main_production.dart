@@ -1,14 +1,30 @@
-import 'package:docdoc/core/routing/app_routar.dart';
-import 'package:flutter/material.dart';
+import 'package:docdoc/core/helpers/extentions.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/dependency_injection.dart';
+import 'core/helpers/constants.dart';
+import 'core/helpers/shared_pref.dart';
+import 'core/routing/app_routar.dart';
 import 'doc_app.dart';
+import 'firebase_options.dart';
 
-void main()async {
+bool isloggedInUser = false;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
-  // To fix text being hidden cug in flutter_screenutil in release mode
   await ScreenUtil.ensureScreenSize();
-  runApp( DocApp(approuter: AppRouter(),));
+  await checkedIfLoggedInUser();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(DocApp(approuter: AppRouter()));
 }
+checkedIfLoggedInUser()async{
+  String ? userToken =await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+  if(!userToken.isNullOrEmpty()){
+    isloggedInUser = true;
+  }
 
+}
