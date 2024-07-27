@@ -1,16 +1,16 @@
+import 'package:docdoc/features/home/ui/widgets/specialization_list/speciality_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/helpers/spacing.dart';
-import '../../logic/home_cubit.dart';
-import '../../logic/home_state.dart';
-import 'doctors_list_view.dart';
-import 'doctors_speciality_list_view.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../logic/home_cubit.dart';
+import '../../../logic/home_state.dart';
+import '../docotors_list/doctors_list_view.dart';
 
-class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
-  const SpecializationsAndDoctorsBlocBuilder({super.key});
+class SpecializationsBlocBuilder extends StatelessWidget {
+  const SpecializationsBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
           return state.maybeWhen(
             orElse: () => const SizedBox.shrink(),
             specializationsLoading: () => setupLoading(),
-            specializationsSuccess: (specializationsResponseModel) {
-              var specializationsList = specializationsResponseModel.specializationDataList;
+            specializationsSuccess: (specializationDataList) {
+              var specializationsList = specializationDataList;
             return   setupSuccess( specializationsList);
             },
             specializationsError: (errorHandler) => setupError(),
@@ -39,7 +39,7 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   Widget setupSuccess(specializationsList) {
     return Expanded(child: Column(
       children: [
-        DoctorsSpecialityListView(specializationDataList:specializationsList ?? [],),
+        SpecialityListView(specializationDataList:specializationsList ?? [],),
         /// const SpecializationsBlocBuilder(),
         verticalSpacing(8),
         DoctorsListView(
